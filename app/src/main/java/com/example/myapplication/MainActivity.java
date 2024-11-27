@@ -55,6 +55,22 @@ public class MainActivity extends AppCompatActivity {
         imageDay.setVisibility(View.INVISIBLE);
         imageEvening.setVisibility(View.INVISIBLE);
         imageNight.setVisibility(View.INVISIBLE);
+
+        notificationManager=(NotificationManager) getApplicationContext().getSystemService((Context.NOTIFICATION_SERVICE));
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                        .setAutoCancel(false)
+                        .setSmallIcon(R.drawable.sun)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentIntent(pendingIntent)
+                        .setContentTitle("Утро")
+                        .setContentText("Пора раздупляться")
+                        .setPriority(PRIORITY_HIGH);
+        createChannelIfNeeded(notificationManager);
+        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
     }
     public void btnDayClick(View view){
         layoutMorning.setVisibility(View.INVISIBLE);
@@ -91,11 +107,43 @@ public class MainActivity extends AppCompatActivity {
         imageDay.setVisibility(View.INVISIBLE);
         imageEvening.setVisibility(View.VISIBLE);
         imageNight.setVisibility(View.INVISIBLE);
+
+        notificationManager=(NotificationManager) getApplicationContext().getSystemService((Context.NOTIFICATION_SERVICE));
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                        .setAutoCancel(false)
+                        .setSmallIcon(R.drawable.sun)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentIntent(pendingIntent)
+                        .setContentTitle("Вечер")
+                        .setContentText("Пора отдохнуть")
+                        .setPriority(PRIORITY_HIGH);
+        createChannelIfNeeded(notificationManager);
+        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
     }
     public void btnNightClick(View view){
         layoutMorning.setVisibility(View.INVISIBLE);
         imageDay.setVisibility(View.INVISIBLE);
         imageEvening.setVisibility(View.INVISIBLE);
         imageNight.setVisibility(View.VISIBLE);
+
+        notificationManager=(NotificationManager) getApplicationContext().getSystemService((Context.NOTIFICATION_SERVICE));
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                        .setAutoCancel(false)
+                        .setSmallIcon(R.drawable.sun)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentIntent(pendingIntent)
+                        .setContentTitle("Ночь")
+                        .setContentText("Пора баиньки")
+                        .setPriority(PRIORITY_HIGH);
+        createChannelIfNeeded(notificationManager);
+        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
     }
 }
